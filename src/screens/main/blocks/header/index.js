@@ -18,4 +18,5 @@ const HeaderWrapper = styled.div`
   justify-content: flex-start;
   padding: 0px 15px;
   top: 0px;
+  border-bottom: 1px solid ${colors.heather};
 `;
