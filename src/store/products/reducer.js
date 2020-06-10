@@ -1,25 +1,20 @@
 import * as types from './actionTypes';
 
 export const initialState = {
-  sidebar: {
-    width: 256,
-  },
-  header: {
-    height: 44,
-  },
+  allProducts: []
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case types.CHANGE_HEADER_HEIGHT:
+    case types.SETTING_PRODUCTS:
       return {
         ...state,
-        header: { height: action.payload.number },
+        allProducts: action.payload.products
       };
 
     default:
       return {
-        ...state,
+        ...state
       };
   }
 };

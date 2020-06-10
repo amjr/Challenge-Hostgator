@@ -63,6 +63,10 @@ const FirstRowWrapper = styled.div`
     height: 380px;
   }
 
+  @media screen and (min-width: 1920px) {
+    overflow-y: unset;
+  }
+
   ul {
     list-style-type: none;
     margin-left: auto;
@@ -127,6 +131,13 @@ const ImageWrapper = styled.div`
 
   .right {
     max-width: 439px;
+  }
+
+  .left,
+  .right {
+    margin-top: calc(83px + 50px);
+    position: relative;
+    z-index: 2;
   }
 `;
 
