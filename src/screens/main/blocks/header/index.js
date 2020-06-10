@@ -2,10 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from 'images/hostgator-logo.svg';
 import * as colors from 'colors';
+import { Container } from '@material-ui/core';
 
 export default () => (
   <HeaderWrapper>
-    <img src={logo} alt="Logo da hostgator" />
+    <Container maxWidth="lg">
+      <img src={logo} alt="Logo da hostgator" />
+    </Container>
   </HeaderWrapper>
 );
 
