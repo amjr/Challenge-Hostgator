@@ -202,13 +202,14 @@ const StyledIconButton = MaterialStyled(({ ...other }) => <IconButton {...other}
 
 const ButtonWrapper = styled.div`
   align-items: center;
+  background-color: ${colors.linkWater};
   display: flex;
   justify-content: center;
   margin-top: -16px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
   min-height: 39px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
 
   &:before {
     background-color: ${colors.matisse};

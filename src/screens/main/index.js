@@ -15,9 +15,4 @@ export default () => (
   </PlanosContextProvider>
 );
 
-const Screen = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  height: 100vh;
-`;
+const Screen = styled.div``;

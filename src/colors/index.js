@@ -7,3 +7,4 @@ export const indigo = '#4480C5';
 export const spindle = '#B9D0EF';
 export const mineShaft = '#333333';
 export const heather = '#B4C6D1';
+export const solitude = '#DFECFF';
