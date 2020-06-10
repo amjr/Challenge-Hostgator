@@ -1,3 +1,5 @@
+/* eslint-disable max-lines */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled from 'styled-components';
 import * as colors from 'colors';
@@ -5,29 +7,33 @@ import { Typography, styled as MaterialStyled, IconButton } from '@material-ui/c
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 export default () => (
-  <FirstRowWrapper>
-    <HeaderOne variant="h1">Hospedagem de Sites teste</HeaderOne>
-    <HeaderTwo variant="h2">
-      Tenha uma
-      <br />
-      hospedagem de sites estável e evite perder <span>visitantes diariamente</span>
-    </HeaderTwo>
-    <ul>
-      <li>
-        <ListItem>99,9% de disponibilidade: seu site sempre no ar</ListItem>
-      </li>
-      <li>
-        <ListItem>Suporte 24h, todos os dias</ListItem>
-      </li>
-      <li>
-        <ListItem>Painel de Controle cPanel</ListItem>
-      </li>
-    </ul>
+  <>
+    <FirstRowWrapper>
+      <HeaderOne variant="h1">Hospedagem de Sites teste</HeaderOne>
 
-    <StyledIconButton>
-      <ArrowDropDownIcon />
-    </StyledIconButton>
-  </FirstRowWrapper>
+      <HeaderTwo variant="h2">
+        Tenha uma hospedagem de sites estável e evite perder <span>visitantes diariamente</span>
+      </HeaderTwo>
+
+      <ul>
+        <li>
+          <ListItem>99,9% de disponibilidade: seu site sempre no ar</ListItem>
+        </li>
+        <li>
+          <ListItem>Suporte 24h, todos os dias</ListItem>
+        </li>
+        <li>
+          <ListItem>Painel de Controle cPanel</ListItem>
+        </li>
+      </ul>
+    </FirstRowWrapper>
+
+    <ButtonWrapper>
+      <StyledIconButton>
+        <ArrowDropDownIcon />
+      </StyledIconButton>
+    </ButtonWrapper>
+  </>
 );
 
 const FirstRowWrapper = styled.div`
@@ -35,11 +41,40 @@ const FirstRowWrapper = styled.div`
   background-color: ${colors.matisse};
   height: 320px;
   justify-content: center;
-  padding: 0px 15px;
+  overflow-y: hidden;
+  padding: 0px 21px;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    padding: 0px 15px;
+  }
 
   ul {
     list-style-type: none;
+
+    @media screen and (min-width: 768px) {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 450px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+
+      li {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+      }
+
+      & li:first-child {
+        width: 100%;
+
+        p {
+          width: 380px;
+        }
+      }
+    }
 
     li {
       p {
@@ -83,10 +118,15 @@ const HeaderTwo = MaterialStyled(({ ...other }) => <Typography {...other} />)({
   marginBottom: '33px',
   textAlign: 'center',
 
-  '@media screen and (max-width: 768px)': {
+  '@media screen and (max-width: 767px)': {
     '& span': {
       display: 'none'
     }
+  },
+  '@media screen and (min-width: 768px)': {
+    fontSize: '30px',
+    lineHeight: '45px',
+    marginBottom: '32px'
   }
 });
 
@@ -102,14 +142,19 @@ const ListItem = MaterialStyled(({ ...other }) => <Typography {...other} />)({
 
 const StyledIconButton = MaterialStyled(({ ...other }) => <IconButton {...other} />)({
   backgroundColor: colors.indigo,
-  bottom: '-16px',
   boxShadow: '2px 2px 5px 0px rgba(0,0,0,.40)',
-  left: ' calc(50% - 32px)',
   maxHeight: '32px',
   maxWidth: '32px',
-  position: 'absolute',
 
   '& svg': {
     fill: colors.white
   }
 });
+
+const ButtonWrapper = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-top: -16px;
+  width: 100%;
+`;
