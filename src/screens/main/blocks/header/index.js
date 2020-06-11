@@ -15,11 +15,12 @@ export default () => (
 const HeaderWrapper = styled.div`
   align-items: center;
   background-color: ${colors.white};
+  border-bottom: 1px solid ${colors.heather};
   display: flex;
   flex: 1;
-  max-height: 52px;
   justify-content: flex-start;
+  max-height: 51px;
+  min-height: 51px;
   padding: 0px 15px;
   top: 0px;
-  border-bottom: 1px solid ${colors.heather};
 `;
