@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 import React from 'react';
 import { PlanosContextConsumer } from 'screens/main/context';
 import styled from 'styled-components';
@@ -40,7 +41,13 @@ export const CardPriceSection = props => {
             /mês*
           </StyledPerMonth>
 
-          <BuyButton>Contrate Agora</BuyButton>
+          <BuyButton
+            onClick={() => {
+              window.location.href = `/?a=add&pid=${product.id}&billingcycle=${context.paymentPeriod}&promocode=PROMOHG40`;
+            }}
+          >
+            Contrate Agora
+          </BuyButton>
 
           <AnoGratis>
             1 ano de Domínio Grátis&nbsp;
