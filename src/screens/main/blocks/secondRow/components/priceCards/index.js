@@ -30,11 +30,14 @@ export default () => (
                       <CardPrices>
                         <StyledPrice>
                           <span>
-                            {currencyFormatter.format(product.cycle.triennially.priceOrder, { locale: 'pt-BR' })}
+                            {currencyFormatter.format(product.cycle[context.paymentPeriod].priceOrder, {
+                              locale: 'pt-BR'
+                            })}
                           </span>
                           &nbsp;
                           {currencyFormatter.format(
-                            product.cycle.triennially.priceOrder - (product.cycle.triennially.priceOrder * 40) / 100,
+                            product.cycle[context.paymentPeriod].priceOrder -
+                              (product.cycle[context.paymentPeriod].priceOrder * 40) / 100,
                             { locale: 'pt-BR' }
                           )}
                         </StyledPrice>
@@ -42,15 +45,18 @@ export default () => (
                           R$
                           <span>
                             {currencyFormatter.format(
-                              (product.cycle.triennially.priceOrder -
-                                (product.cycle.triennially.priceOrder * 40) / 100) /
-                                product.cycle.triennially.months,
+                              (product.cycle[context.paymentPeriod].priceOrder -
+                                (product.cycle[context.paymentPeriod].priceOrder * 40) / 100) /
+                                product.cycle[context.paymentPeriod].months,
                               { locale: 'pt-BR', symbol: '' }
                             )}
                           </span>
                           /mês*
                         </StyledPerMonth>
+                        <button>Contrate Agora</button>1 ano de Domínio Grátis (i) economize R$ XXX (40% off)
                       </CardPrices>
+
+                      <Separator />
                     </Card>
                   </ItemWrapper>
                 );

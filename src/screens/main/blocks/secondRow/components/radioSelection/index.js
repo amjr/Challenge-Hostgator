@@ -14,9 +14,9 @@ export default () => {
             onChange={e => context.setPaymentPeriod(e.target.value)}
             row
           >
-            <FormControlLabel value="3 anos" control={<Radio />} label="3 anos" />
-            <FormControlLabel value="1 ano" control={<Radio />} label="1 ano" />
-            <FormControlLabel value="1 mes" control={<Radio />} label="1 mes" />
+            {context.paymentOptions.map(option => (
+              <FormControlLabel value={option.value} control={<Radio />} label={option.label} />
+            ))}
           </RadioGroup>
         );
       }}

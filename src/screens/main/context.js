@@ -10,7 +10,12 @@ export const PlanosContextProvider = props => {
   const dispatch = useDispatch();
   const { children } = props;
   const allProducts = useSelector(state => state.products.allProducts);
-  const [paymentPeriod, setPaymentPeriod] = useState('3 anos');
+  const [paymentPeriod, setPaymentPeriod] = useState('triennially');
+  const [paymentOptions, setPaymentOptions] = useState([
+    { value: 'triennially', label: '3 anos' },
+    { value: 'annually', label: '1 ano' },
+    { value: 'monthly', label: '1 mês' }
+  ]);
 
   useEffect(() => {
     axios.get('https://7ac2b8ab-f3e5-4534-863d-90dd424a6405.mock.pstmn.io/prices').then(response => {
@@ -26,7 +31,9 @@ export const PlanosContextProvider = props => {
   const values = {
     allProducts,
     paymentPeriod,
-    setPaymentPeriod
+    setPaymentPeriod,
+    paymentOptions,
+    setPaymentOptions
   };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
