@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { PlanosContextConsumer } from 'screens/main/context';
 import styled from 'styled-components';
 import * as colors from 'colors';
@@ -8,7 +8,6 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { styled as MaterialStyled, IconButton } from '@material-ui/core';
 import { CustomCard } from '../customCard';
-// import { Container, IconButton } from '@material-ui/core';
 
 export default () => {
   return (
