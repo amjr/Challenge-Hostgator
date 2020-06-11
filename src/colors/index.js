@@ -8,3 +8,4 @@ export const spindle = '#B9D0EF';
 export const mineShaft = '#333333';
 export const heather = '#B4C6D1';
 export const solitude = '#DFECFF';
+export const pigeonPost = '#9EB8DC';

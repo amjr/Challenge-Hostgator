@@ -1,5 +1,4 @@
 /* eslint-disable max-lines */
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import styled from 'styled-components';
 import * as colors from 'colors';
@@ -190,7 +189,7 @@ const ListItem = MaterialStyled(({ ...other }) => <Typography {...other} />)({
 });
 
 const StyledIconButton = MaterialStyled(({ ...other }) => <IconButton {...other} />)({
-  backgroundColor: colors.indigo,
+  backgroundColor: `${colors.indigo} !important`,
   boxShadow: '2px 2px 5px 0px rgba(0,0,0,.40)',
   maxHeight: '32px',
   maxWidth: '32px',

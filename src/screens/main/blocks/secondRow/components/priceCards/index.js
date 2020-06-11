@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import * as colors from 'colors';
 import { PlanImage } from 'images/planosImages';
 import { find, propEq } from 'ramda';
-import { Typography, styled as MaterialStyled } from '@material-ui/core';
-import currencyFormatter from 'currency-formatter';
+import { CustomCard } from '../customCard';
+import { Container } from '@material-ui/core';
 
 export default () => (
   <PlanosContextConsumer>
@@ -13,56 +13,20 @@ export default () => (
       const imgs = PlanImage;
       return (
         context.allProducts.length > 0 && (
-          <CarouselWrapper>
+          // <Container maxWidth="lg">
+          <CarouselWrapper className="CarouselWrapper">
             <Carousel length={context.allProducts.length}>
               {context.allProducts.map(product => {
                 const image = find(propEq('name', product.name), imgs);
                 return (
-                  <ItemWrapper className="CarouselWrapper">
-                    <Card>
-                      <CardHeader>
-                        <img src={image.img} alt={`Imagem de decoração do ${product.name}`} />
-                        <StyledName>{product.name}</StyledName>
-                      </CardHeader>
-
-                      <Separator />
-
-                      <CardPrices>
-                        <StyledPrice>
-                          <span>
-                            {currencyFormatter.format(product.cycle[context.paymentPeriod].priceOrder, {
-                              locale: 'pt-BR'
-                            })}
-                          </span>
-                          &nbsp;
-                          {currencyFormatter.format(
-                            product.cycle[context.paymentPeriod].priceOrder -
-                              (product.cycle[context.paymentPeriod].priceOrder * 40) / 100,
-                            { locale: 'pt-BR' }
-                          )}
-                        </StyledPrice>
-                        <StyledPerMonth>
-                          R$
-                          <span>
-                            {currencyFormatter.format(
-                              (product.cycle[context.paymentPeriod].priceOrder -
-                                (product.cycle[context.paymentPeriod].priceOrder * 40) / 100) /
-                                product.cycle[context.paymentPeriod].months,
-                              { locale: 'pt-BR', symbol: '' }
-                            )}
-                          </span>
-                          /mês*
-                        </StyledPerMonth>
-                        <button>Contrate Agora</button>1 ano de Domínio Grátis (i) economize R$ XXX (40% off)
-                      </CardPrices>
-
-                      <Separator />
-                    </Card>
+                  <ItemWrapper className="ItemWrapper">
+                    <CustomCard product={product} image={image} />
                   </ItemWrapper>
                 );
               })}
             </Carousel>
           </CarouselWrapper>
+          // </Container>
         )
       );
     }}
@@ -94,60 +58,3 @@ const ItemWrapper = styled.div`
   margin-right: auto;
   opacity: 1;
 `;
-
-const Card = styled.div`
-  width: 266px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const CardHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 34px 26px 0px;
-  flex-direction: column;
-`;
-
-const Separator = styled.div`
-  background-color: ${colors.solitude};
-  height: 1px;
-  width: 100%;
-`;
-
-const CardPrices = styled.div`
-  padding: 30px 26px 36px;
-`;
-
-const StyledName = MaterialStyled(({ ...other }) => <Typography {...other} />)({
-  color: colors.matisse,
-  fontSize: '26px',
-  fontWeight: 700,
-  lineHeight: '26px',
-  textAlign: 'center',
-  marginTop: '10px',
-  marginBottom: '27px'
-});
-
-const StyledPrice = MaterialStyled(({ ...other }) => <Typography {...other} />)({
-  color: colors.mineShaft,
-  fontSize: '13px',
-  fontWeight: 700,
-  lineHeight: '19px',
-  textAlign: 'center',
-  '& span': {
-    fontWeight: 400,
-    textDecoration: 'line-through'
-  }
-});
-
-const StyledPerMonth = MaterialStyled(({ ...other }) => <Typography {...other} />)({
-  color: colors.matisse,
-  fontSize: '20px',
-  fontWeight: 400,
-  lineHeight: '24px',
-  textAlign: 'center',
-  '& span': {
-    fontWeight: 700,
-    fontSize: '35px'
-  }
-});
