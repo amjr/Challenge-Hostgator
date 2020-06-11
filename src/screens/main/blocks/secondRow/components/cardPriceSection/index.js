@@ -42,6 +42,7 @@ export const CardPriceSection = props => {
           </StyledPerMonth>
 
           <BuyButton
+            isFeatured={product.name === 'Plano M'}
             onClick={() => {
               window.location.href = `/?a=add&pid=${product.id}&billingcycle=${context.paymentPeriod}&promocode=PROMOHG40`;
             }}
@@ -110,8 +111,8 @@ const StyledPerMonth = MaterialStyled(({ ...other }) => <Typography {...other} /
   }
 });
 
-const BuyButton = MaterialStyled(({ ...other }) => <Button {...other} />)({
-  backgroundColor: `${colors.indigo} !important`,
+const BuyButton = MaterialStyled(({ isFeatured, ...other }) => <Button {...other} />)({
+  backgroundColor: props => (props.isFeatured ? `${colors.orange}` : `${colors.indigo} !important`),
   borderRadius: '26px',
   color: colors.white,
   fontFamily: '"Montserrat", "Helvetica", "Arial", sans-serif',

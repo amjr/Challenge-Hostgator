@@ -69,6 +69,7 @@ const Carousel = styled.div`
   margin-left: auto;
   margin-right: auto;
   width: calc(${props => props.length * 268}px + ${props => props.length * 10}px + 42px);
+  padding: 14px 0px 5px 0px;
 
   & > div {
     margin: 0px 5px;

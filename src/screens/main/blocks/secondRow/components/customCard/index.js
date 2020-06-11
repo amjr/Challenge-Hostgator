@@ -9,7 +9,7 @@ import { CardInfoSection } from '../cardInfoSection';
 export const CustomCard = props => {
   const { product, image } = props;
   return (
-    <Card>
+    <Card isFeatured={product.name === 'Plano M'}>
       <CardHeader>
         <img src={image.img} alt={`Imagem de decoração do ${product.name}`} />
         <StyledName>{product.name}</StyledName>
@@ -43,6 +43,26 @@ const Card = styled.div`
   width: 266px;
   display: flex;
   flex-direction: column;
+  &:before {
+    content: '';
+    height: 14px;
+    width: 100%;
+    background-color: ${props => (props.isFeatured ? `${colors.orange}` : 'transparent')};
+    display: block;
+    top: -15px;
+    position: relative;
+    border-radius: 4px 4px 0px 0px;
+  }
+  &:after {
+    content: '';
+    height: 5px;
+    width: 100%;
+    background-color: ${props => (props.isFeatured ? `${colors.orange}` : 'transparent')};
+    display: block;
+    top: 5px;
+    position: relative;
+    border-radius: 0px 0px 5px 5px;
+  }
 `;
 
 const CardHeader = styled.div`
