@@ -4,10 +4,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `yarn start`
+### `Instalação`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Para garantir a correta instalação deste projeto é necessario ter NPM ou Yarn instalados
+Após clonar o projeto você deve executar: <b>yarn</b> ou <b>npm i</b>
+
+### `Execução`
+
+Para executar o projeto você deve executar: <b>yarn start</b> ou <b>npm start</b>
+A aplicação irá executar por default em [http://localhost:3000](http://localhost:3000)
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
