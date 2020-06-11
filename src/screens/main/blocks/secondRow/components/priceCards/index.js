@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { PlanosContextConsumer } from 'screens/main/context';
 import styled from 'styled-components';
 import * as colors from 'colors';
@@ -15,34 +15,33 @@ export default () => {
     <PlanosContextConsumer>
       {context => {
         const imgs = PlanImage;
-
         return (
-          context.allProducts.length > 0 && (
-            // <Container maxWidth="lg">
-            <PriceCardsWarpper>
-              <NavButton onClick={() => context.scrollTo(-context.width)} className="leftArrow">
-                <ArrowBackIosIcon />
-              </NavButton>
+          <PriceCardsWarpper>
+            {context.allProducts.length > 0 && (
+              <>
+                <NavButton onClick={() => context.scrollTo((266 + 14) * -1)} className="leftArrow">
+                  <ArrowBackIosIcon />
+                </NavButton>
 
-              <CarouselWrapper className="CarouselWrapper" ref={context.carouselRef}>
-                <Carousel length={context.allProducts.length}>
-                  {context.allProducts.map(product => {
-                    const image = find(propEq('name', product.name), imgs);
-                    return (
-                      <ItemWrapper className="ItemWrapper">
-                        <CustomCard product={product} image={image} />
-                      </ItemWrapper>
-                    );
-                  })}
-                </Carousel>
-              </CarouselWrapper>
+                <CarouselWrapper className="CarouselWrapper" ref={context.carouselRef}>
+                  <Carousel length={context.allProducts.length} className="Carousel" windowWidth={context.width}>
+                    {context.allProducts.map(product => {
+                      const image = find(propEq('name', product.name), imgs);
+                      return (
+                        <ItemWrapper className="ItemWrapper">
+                          <CustomCard product={product} image={image} />
+                        </ItemWrapper>
+                      );
+                    })}
+                  </Carousel>
+                </CarouselWrapper>
 
-              <NavButton onClick={() => context.scrollTo(context.width)} className="rightArrow">
-                <ArrowForwardIosIcon />
-              </NavButton>
-            </PriceCardsWarpper>
-            // </Container>
-          )
+                <NavButton onClick={() => context.scrollTo(266 + 14)} className="rightArrow">
+                  <ArrowForwardIosIcon />
+                </NavButton>
+              </>
+            )}
+          </PriceCardsWarpper>
         );
       }}
     </PlanosContextConsumer>
@@ -55,10 +54,9 @@ const PriceCardsWarpper = styled.div`
 `;
 
 const CarouselWrapper = styled.div`
-  max-width: calc(100% - 26px);
+  max-width: 100%;
   overflow: hidden;
   overflow: scroll;
-  padding: 0px 13px;
   position: relative;
 
   ::-webkit-scrollbar {
@@ -69,19 +67,31 @@ const CarouselWrapper = styled.div`
 
 const Carousel = styled.div`
   display: flex;
-  width: calc(${props => props.length * 266}px + 26px + 26px);
+  margin-left: auto;
+  margin-right: auto;
+  width: calc(${props => props.length * 268}px + ${props => props.length * 10}px + 42px);
+
+  & > div {
+    margin: 0px 5px;
+  }
+
+  & > div:first-child {
+    margin-left: 26px;
+  }
+
+  & > div:last-child {
+    margin-right: 26px;
+  }
 `;
 
 const ItemWrapper = styled.div`
   background: ${colors.white};
   border-radius: 4px;
   border: 1px solid ${colors.solitude};
-  margin-left: auto;
-  margin-right: auto;
   opacity: 1;
 `;
 
-const NavButton = MaterialStyled(({ ...other }) => <IconButton {...other} />)({
+const NavButton = MaterialStyled(({ itemsWidth, windowWidth, ...other }) => <IconButton {...other} />)({
   width: '35px',
   height: '35px',
   backgroundColor: `${colors.matisse} !important`,
@@ -93,14 +103,14 @@ const NavButton = MaterialStyled(({ ...other }) => <IconButton {...other} />)({
   zIndex: 99,
 
   '&.leftArrow': {
-    left: '2px',
+    left: '5px',
     '& svg': {
       marginLeft: '8px'
     }
   },
 
   '&.rightArrow': {
-    right: '2px',
+    right: '5px',
     '& svg': {
       marginLeft: '3px'
     }
@@ -108,5 +118,9 @@ const NavButton = MaterialStyled(({ ...other }) => <IconButton {...other} />)({
 
   '& svg': {
     fill: colors.white
+  },
+
+  '@media screen and (min-width: 870px)': {
+    display: 'none'
   }
 });

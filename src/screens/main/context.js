@@ -24,12 +24,26 @@ export const PlanosContextProvider = props => {
   ]);
 
   const scrollTo = newValue => {
+    let newScrollPosition = scrollPosition;
+
+    if (newScrollPosition + newValue >= width * allProducts.length) {
+      newScrollPosition = width * allProducts.length;
+    } else if (newScrollPosition + newValue < width * allProducts.length && newValue > 0) {
+      newScrollPosition += newValue;
+    }
+
+    if (newScrollPosition + newValue <= 0) {
+      newScrollPosition = 0;
+    } else if (newScrollPosition + newValue > 0 && newValue < 0) {
+      newScrollPosition += newValue;
+    }
+
     carouselRef.current.scroll({
       top: 0,
-      left: scrollPosition + newValue,
+      left: newScrollPosition,
       behavior: 'smooth'
     });
-    setScrollPosition(scrollPosition + newValue);
+    setScrollPosition(newScrollPosition);
   };
 
   const resizeCanva = () => {
@@ -39,9 +53,17 @@ export const PlanosContextProvider = props => {
       const windowWidth = window.outerWidth;
       setWidth(windowWidth);
     }, 500);
+
+    window.addEventListener('resize', resizeCanva);
+
+    return () => {
+      window.removeEventListener('resize', resizeCanva);
+    };
   };
 
   useEffect(() => {
+    resizeCanva();
+
     axios.get('https://7ac2b8ab-f3e5-4534-863d-90dd424a6405.mock.pstmn.io/prices').then(response => {
       const productArray = [];
       const { products } = response.data.shared;
