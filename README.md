@@ -1,11 +1,9 @@
 ### `Instalação`
 
 To ensure a corret instalation from this projetct it's necessary npm or yanr installed in your machine, in case you don't hover you can download it here: [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-
 After cloning the project you must execute: <b>yarn</b> or <b>npm i</b> in your project folder
 
 Para garantir a correta instalação deste projeto é necessario ter NPM ou Yarn instalados, caso você não tenha, pode baixa-los aqui:[https://nodejs.org/en/download/](https://nodejs.org/en/download/)
-
 Após clonar o projeto você deve executar: <b>yarn</b> ou <b>npm i</b> dentro do projeto
 
 ### `Execução`
