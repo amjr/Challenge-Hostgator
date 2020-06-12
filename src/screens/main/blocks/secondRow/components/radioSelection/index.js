@@ -21,6 +21,7 @@ export default () => {
             >
               {context.paymentOptions.map(option => (
                 <StyledFormControlLabel
+                  key={`option_${option.value}`}
                   value={option.value}
                   control={<Radio />}
                   label={option.label}

@@ -74,13 +74,26 @@ CardPriceSection.propTypes = {
   image: PropTypes.shape({
     img: PropTypes.string,
     name: PropTypes.string
-  }).isRequired,
+  }),
 
   product: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
     cycle: PropTypes.object
-  }).isRequired
+  })
+};
+
+CardPriceSection.defaultProps = {
+  image: PropTypes.shape({
+    img: '',
+    name: ''
+  }),
+
+  product: PropTypes.shape({
+    id: 1,
+    name: '',
+    cycle: {}
+  })
 };
 
 const CardPrices = styled.div`

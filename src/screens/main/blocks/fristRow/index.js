@@ -3,48 +3,64 @@ import React from 'react';
 import styled from 'styled-components';
 import * as colors from 'colors';
 import { Typography, styled as MaterialStyled, IconButton } from '@material-ui/core';
+import { PlanosContextConsumer } from 'screens/main/context';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import LeftImage from 'images/first-row_left.svg';
 import RightImage from 'images/first-row_right.svg';
 
 export default () => (
-  <>
-    <FirstRowWrapper>
-      <ImageWrapper>
-        <img src={LeftImage} className="left" alt="Imagem de móveis em azul" />
-      </ImageWrapper>
+  <PlanosContextConsumer>
+    {context => {
+      return (
+        <>
+          <FirstRowWrapper>
+            <ImageWrapper>
+              <img src={LeftImage} className="left" alt="Imagem de móveis em azul" />
+            </ImageWrapper>
 
-      <FirstRowText>
-        <HeaderOne variant="h1">Hospedagem de Sites teste</HeaderOne>
+            <FirstRowText>
+              <HeaderOne variant="h1">Hospedagem de Sites teste</HeaderOne>
 
-        <HeaderTwo variant="h2">
-          Tenha uma hospedagem de sites estável e evite perder <span>visitantes diariamente</span>
-        </HeaderTwo>
+              <HeaderTwo variant="h2">
+                Tenha uma hospedagem de sites estável e evite perder <span>visitantes diariamente</span>
+              </HeaderTwo>
 
-        <ul>
-          <li>
-            <ListItem>99,9% de disponibilidade: seu site sempre no ar</ListItem>
-          </li>
-          <li>
-            <ListItem>Suporte 24h, todos os dias</ListItem>
-          </li>
-          <li>
-            <ListItem>Painel de Controle cPanel</ListItem>
-          </li>
-        </ul>
-      </FirstRowText>
+              <ul>
+                <li>
+                  <ListItem>99,9% de disponibilidade: seu site sempre no ar</ListItem>
+                </li>
+                <li>
+                  <ListItem>Suporte 24h, todos os dias</ListItem>
+                </li>
+                <li>
+                  <ListItem>Painel de Controle cPanel</ListItem>
+                </li>
+              </ul>
+            </FirstRowText>
 
-      <ImageWrapper>
-        <img src={RightImage} className="right" alt="Imagem de móveis em azul" />
-      </ImageWrapper>
-    </FirstRowWrapper>
+            <ImageWrapper>
+              <img src={RightImage} className="right" alt="Imagem de móveis em azul" />
+            </ImageWrapper>
+          </FirstRowWrapper>
 
-    <ButtonWrapper className="ButtonWrapper">
-      <StyledIconButton>
-        <ArrowDropDownIcon />
-      </StyledIconButton>
-    </ButtonWrapper>
-  </>
+          <ButtonWrapper
+            className="ButtonWrapper"
+            onClick={() =>
+              window.scroll({
+                top: context.carouselRef.current.offsetHeight,
+                left: 0,
+                behavior: 'smooth'
+              })
+            }
+          >
+            <StyledIconButton>
+              <ArrowDropDownIcon />
+            </StyledIconButton>
+          </ButtonWrapper>
+        </>
+      );
+    }}
+  </PlanosContextConsumer>
 );
 
 const FirstRowWrapper = styled.div`

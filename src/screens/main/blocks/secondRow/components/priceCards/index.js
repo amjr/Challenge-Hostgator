@@ -28,7 +28,7 @@ export default () => {
                     {context.allProducts.map(product => {
                       const image = find(propEq('name', product.name), imgs);
                       return (
-                        <ItemWrapper className="ItemWrapper">
+                        <ItemWrapper className="ItemWrapper" key={`product_${product.id}`}>
                           <CustomCard product={product} image={image} />
                         </ItemWrapper>
                       );
