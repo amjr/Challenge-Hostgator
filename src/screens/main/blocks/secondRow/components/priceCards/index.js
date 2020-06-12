@@ -7,6 +7,7 @@ import { find, propEq } from 'ramda';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import { styled as MaterialStyled, IconButton } from '@material-ui/core';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { CustomCard } from '../customCard';
 
 export default () => {
@@ -16,7 +17,7 @@ export default () => {
         const imgs = PlanImage;
         return (
           <PriceCardsWarpper>
-            {context.allProducts.length > 0 && (
+            {context.allProducts.length > 0 ? (
               <>
                 <NavButton onClick={() => context.scrollTo((266 + 14) * -1)} className="leftArrow">
                   <ArrowBackIosIcon />
@@ -39,6 +40,12 @@ export default () => {
                   <ArrowForwardIosIcon />
                 </NavButton>
               </>
+            ) : (
+              <SkeletonWrapper>
+                <Skeleton variant="rect" width={266} height={300} />
+                <Skeleton variant="rect" width={266} height={300} />
+                <Skeleton variant="rect" width={266} height={300} />
+              </SkeletonWrapper>
             )}
           </PriceCardsWarpper>
         );
@@ -46,6 +53,18 @@ export default () => {
     </PlanosContextConsumer>
   );
 };
+
+const SkeletonWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+
+  & > span {
+    margin: 0px 15px;
+  }
+`;
 
 const PriceCardsWarpper = styled.div`
   position: relative;
